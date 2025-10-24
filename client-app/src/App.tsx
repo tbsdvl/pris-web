@@ -1,31 +1,15 @@
 import './App.css';
 
-import { createRootRoute, createRouter, Outlet, RouterProvider } from "@tanstack/react-router"
+import { RouterProvider } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
 import { AuthProvider, useAuth } from './auth';
-
-const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
-});
-
-const routeTree = rootRoute.addChildren([
-  // ... other routes
-]);
-
-const router = createRouter({
-  routeTree,
-});
+import { router } from './router';
 
 function InnerApp() {
-  const auth = useAuth()
+  const auth = useAuth();
   return (
     <>
-      <RouterProvider router={router} context={auth} />
+      <RouterProvider router={router} context={{ auth }} />
       <TanStackRouterDevtools router={router} />
     </>
   );
