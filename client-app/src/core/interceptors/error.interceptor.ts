@@ -36,7 +36,6 @@ export const responseInterceptor = {
       httpError.message = 'Network error - please check your connection';
     }
 
-    // Log error for debugging
     console.error('HTTP Error:', httpError.message, error);
 
     return Promise.reject(httpError);
