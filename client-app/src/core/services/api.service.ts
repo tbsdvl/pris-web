@@ -5,8 +5,8 @@ import { httpConfig } from '../config/http.config';
 
 const api = axios.create({
     baseURL: httpConfig.baseURL,
-    withCredentials: httpConfig.withCredentials,
     timeout: httpConfig.timeout,
+    withCredentials: true,
 });
 
 api.interceptors.request.use(
