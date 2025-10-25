@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { useAuthGuard } from '../hooks/useAuthGuard';
-import { LoadingSpinner } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
+import { LoadingSpinnerComponent } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface AuthGuardProps {
 export function AuthGuard({ 
   children, 
   requireAuth = true, 
-  fallback = <LoadingSpinner />
+  fallback = <LoadingSpinnerComponent />
 }: AuthGuardProps) {
   const { shouldRender, isLoading } = useAuthGuard({ requireAuth });
 

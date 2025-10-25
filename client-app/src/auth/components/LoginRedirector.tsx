@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { InteractionType } from '@azure/msal-browser';
-import { LoadingSpinner } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
+import { LoadingSpinnerComponent } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
 
 export function LoginRedirectorComponent() {
   const { login, isLoading, error } = useAuth();
@@ -28,5 +28,5 @@ export function LoginRedirectorComponent() {
     );
   }
 
-  return <LoadingSpinner />;
+  return <LoadingSpinnerComponent />;
 }

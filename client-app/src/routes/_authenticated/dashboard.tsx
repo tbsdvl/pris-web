@@ -3,7 +3,7 @@ import { HeaderComponent } from '../../core/components/header/HeaderComponent';
 import { useMsal } from '@azure/msal-react';
 import { useEffect, useState } from 'react';
 import type { ProfileModel } from '../../models/profile.model';
-import { LoadingSpinner } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
+import { LoadingSpinnerComponent } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
   component: DashboardComponent,
@@ -21,7 +21,7 @@ function DashboardComponent() {
   }, [accounts]);
 
   if (inProgress === "login") {
-    return <LoadingSpinner />;
+    return <LoadingSpinnerComponent />;
   }
 
   return (
