@@ -2,14 +2,13 @@ import './App.css';
 
 import { RouterProvider } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
-import { AuthProvider, useAuth } from './auth';
 import { router } from './router';
+import { AppProvider } from './auth';
 
 function InnerApp() {
-  const auth = useAuth();
   return (
     <>
-      <RouterProvider router={router} context={{ auth }} />
+      <RouterProvider router={router} />
       <TanStackRouterDevtools router={router} />
     </>
   );
@@ -17,9 +16,9 @@ function InnerApp() {
 
 function App() {
   return (
-    <AuthProvider>
+    <AppProvider>
       <InnerApp />
-    </AuthProvider>
+    </AppProvider>
   );
 }
 
