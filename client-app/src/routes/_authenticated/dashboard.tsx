@@ -1,15 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { HeaderComponent } from '../../components/header/HeaderComponent';
+import { HeaderComponent } from '../../core/components/header/HeaderComponent';
 import { useMsal } from '@azure/msal-react';
 import { useEffect, useState } from 'react';
 import type { ProfileModel } from '../../models/profile.model';
+import { LoadingSpinner } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
   component: DashboardComponent,
 });
 
 function DashboardComponent() {
-  const { accounts } = useMsal();
+  const { accounts, inProgress } = useMsal();
   const [profile, setProfile] = useState<ProfileModel>({ name: '' });
 
   useEffect(() => {
@@ -18,6 +19,10 @@ function DashboardComponent() {
       setProfile({ name: account.name } as ProfileModel);
     }
   }, [accounts]);
+
+  if (inProgress === "login") {
+    return <LoadingSpinner />;
+  }
 
   return (
     <>

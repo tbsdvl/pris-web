@@ -7,4 +7,7 @@ export const ROUTES = {
   
   // Route groups (for layout routes)
   AUTHENTICATED: '/_authenticated',
+
+  // Authentication response route
+  AUTH_RESPONSE: 'auth-response',
 };
