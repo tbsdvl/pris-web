@@ -1,10 +1,11 @@
 import { createFileRoute, Outlet, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react';
-import { AuthenticatedTemplate, useIsAuthenticated } from '@azure/msal-react';
+import { useIsAuthenticated } from '@azure/msal-react';
+import { ROUTES } from '../constants/routes.constants';
+import { ProtectedComponent } from '../components/protected/ProtectedComponent';
 
 export const Route = createFileRoute('/_authenticated')({
   component: AuthenticatedLayout,
-  // No beforeLoad - handle in component
 });
 
 function AuthenticatedLayout() {
@@ -13,13 +14,13 @@ function AuthenticatedLayout() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate({ to: '/login' });
+      navigate({ to: ROUTES.LOGIN });
     }
   }, [isAuthenticated, navigate]);
 
   return (
-    <AuthenticatedTemplate>
+    <ProtectedComponent>
       <Outlet />
-    </AuthenticatedTemplate>
+    </ProtectedComponent>
   );
 }

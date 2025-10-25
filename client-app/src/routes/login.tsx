@@ -2,10 +2,10 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsalAuthentication } from "@azure/msal-react";
 import { InteractionRequiredAuthError, InteractionType } from '@azure/msal-browser';
+import { ROUTES } from '../constants/routes.constants';
 
 export const Route = createFileRoute('/login')({
   component: LoginComponent,
-  // No loader/beforeLoad - handle everything in component
 })
 
 function LoginComponent() {
@@ -14,13 +14,11 @@ function LoginComponent() {
   const isAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
-    // Redirect authenticated users to dashboard
     if (isAuthenticated) {
-      navigate({ to: '/dashboard' });
+      navigate({ to: ROUTES.DASHBOARD });
       return;
     }
 
-    // Handle authentication errors
     if (error instanceof InteractionRequiredAuthError) {
       login(InteractionType.Redirect);
     }
