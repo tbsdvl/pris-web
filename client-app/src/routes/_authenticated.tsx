@@ -1,8 +1,10 @@
+import { useIsAuthenticated } from '@azure/msal-react';
 import { createFileRoute, redirect, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_authenticated')({
   beforeLoad: ({ context, location }) => {
-    if (!context.auth.isAuthenticated) {
+    const isAuthenticated = useIsAuthenticated();
+    if (!isAuthenticated) {
       throw redirect({
         to: '/login',
         search: {
