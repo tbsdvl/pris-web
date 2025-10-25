@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@azure/msal-browser": "^4.25.1",
+    "@azure/msal-react": "^3.0.20",
     "@tanstack/react-query": "^5.90.5",
     "@tanstack/react-router": "^1.133.25",
     "@tanstack/react-router-devtools": "^1.133.25",
