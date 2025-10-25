@@ -7,6 +7,7 @@ import {
 } from '@azure/msal-react';
 import { InteractionType, InteractionStatus } from '@azure/msal-browser';
 import type { AccountInfo } from '@azure/msal-browser';
+import { loginRequest } from '../../core/config/msal.config';
 
 export interface AuthState {
   isAuthenticated: boolean;
@@ -37,7 +38,7 @@ export const useAuth = (): UseAuthReturn => {
     InteractionType.Redirect,
     {
       account: undefined,
-      scopes: [], // Add required scopes here
+      scopes: ["User.Read"], // Add required scopes here
     }
   );
 
@@ -61,9 +62,7 @@ export const useAuth = (): UseAuthReturn => {
       if (interactionType === InteractionType.Redirect) {
         await msalLogin(InteractionType.Redirect);
       } else {
-        await instance.loginPopup({
-          scopes: [], // Add required scopes here
-        });
+        await instance.loginPopup(loginRequest);
       }
     } catch (error) {
       setAuthState(prev => ({ 
@@ -75,9 +74,7 @@ export const useAuth = (): UseAuthReturn => {
 
   const logout = useCallback(async () => {
     try {
-      await instance.logoutRedirect({
-        postLogoutRedirectUri: import.meta.env.VITE_API_BASE_URL + 'login',
-      });
+      await instance.logoutRedirect();
     } catch (error) {
       setAuthState(prev => ({ 
         ...prev, 

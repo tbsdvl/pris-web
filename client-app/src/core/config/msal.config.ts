@@ -13,3 +13,7 @@ export const msalConfig : Configuration = {
     storeAuthStateInCookie: false,
   }
 };
+
+export const loginRequest = {
+  scopes: ["User.Read"] // Add your required scopes here
+};

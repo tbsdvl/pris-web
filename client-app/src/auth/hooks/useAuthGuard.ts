@@ -21,12 +21,10 @@ export const useAuthGuard = (options: UseAuthGuardOptions = {}) => {
   const { isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
-    // Don't redirect while still loading authentication state
     if (isLoading) {
       return;
     }
 
-    // If authentication is required but user is not authenticated
     if (requireAuth && !isAuthenticated) {
       navigate({ 
         to: redirectTo,
@@ -37,7 +35,6 @@ export const useAuthGuard = (options: UseAuthGuardOptions = {}) => {
       return;
     }
 
-    // If authentication is not required but user is authenticated
     if (!requireAuth && isAuthenticated) {
       navigate({ to: fallbackTo });
       return;
