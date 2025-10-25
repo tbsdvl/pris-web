@@ -7,8 +7,8 @@ const msalConfig : Configuration = {
   auth: {
     clientId: import.meta.env.VITE_AZURE_CLIENT_ID!,
     authority: "https://login.microsoftonline.com/organizations",
-    redirectUri: window.location.origin,
-    postLogoutRedirectUri: window.location.origin,
+    redirectUri: 'https://localhost:5173/redirect',
+    postLogoutRedirectUri: 'https://localhost:5173/dashboard',
   },
   cache: {
     cacheLocation: "localStorage",

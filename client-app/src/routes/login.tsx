@@ -13,7 +13,7 @@ export const Route = createFileRoute('/login')({
 })
 
 function LoginComponent() {
-  const { login, result, error } = useMsalAuthentication(InteractionType.Popup);
+  const { login, result, error } = useMsalAuthentication(InteractionType.Redirect);
 
   useEffect(() => {
     if (error instanceof InteractionRequiredAuthError) {
