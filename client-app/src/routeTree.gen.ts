@@ -9,16 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RedirectRouteImport } from './routes/redirect'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 
-const RedirectRoute = RedirectRouteImport.update({
-  id: '/redirect',
-  path: '/redirect',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -36,49 +30,33 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
-  '/redirect': typeof RedirectRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
-  '/redirect': typeof RedirectRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
-  '/redirect': typeof RedirectRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/redirect' | '/dashboard'
+  fullPaths: '/login' | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/redirect' | '/dashboard'
-  id:
-    | '__root__'
-    | '/_authenticated'
-    | '/login'
-    | '/redirect'
-    | '/_authenticated/dashboard'
+  to: '/login' | '/dashboard'
+  id: '__root__' | '/_authenticated' | '/login' | '/_authenticated/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   LoginRoute: typeof LoginRoute
-  RedirectRoute: typeof RedirectRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/redirect': {
-      id: '/redirect'
-      path: '/redirect'
-      fullPath: '/redirect'
-      preLoaderRoute: typeof RedirectRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -118,7 +96,6 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   LoginRoute: LoginRoute,
-  RedirectRoute: RedirectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

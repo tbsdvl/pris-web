@@ -1,35 +1,32 @@
-import { createFileRoute } from '@tanstack/react-router'
-import React, { useEffect } from 'react';
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsalAuthentication } from "@azure/msal-react";
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useEffect } from 'react';
+import { UnauthenticatedTemplate, useIsAuthenticated, useMsalAuthentication } from "@azure/msal-react";
 import { InteractionRequiredAuthError, InteractionType } from '@azure/msal-browser';
 
 export const Route = createFileRoute('/login')({
-  validateSearch: (search) => ({
-    redirect: (search.redirect as string) || '/',
-  }),
-  beforeLoad: () => {
-  },
   component: LoginComponent,
 })
 
 function LoginComponent() {
-  const { login, result, error } = useMsalAuthentication(InteractionType.Redirect);
+  const navigate = useNavigate();
+  const { login, error } = useMsalAuthentication(InteractionType.Redirect);
+  const isAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
-    if (error instanceof InteractionRequiredAuthError) {
-        login(InteractionType.Popup);
+    if (isAuthenticated) {
+      navigate({ to: '/dashboard' });
     }
-}, [error]);
+
+    if (error instanceof InteractionRequiredAuthError) {
+        login(InteractionType.Redirect);
+    }
+  }, [error, isAuthenticated]);
 
   return (
-    <React.Fragment>
-        <p>Anyone can see this paragraph.</p>
-        <AuthenticatedTemplate>
-            <p>At least one account is signed in!</p>
-        </AuthenticatedTemplate>
-        <UnauthenticatedTemplate>
-            <p>No users are signed in!</p>
-        </UnauthenticatedTemplate>
-    </React.Fragment>
+    <>
+      <UnauthenticatedTemplate>
+          <p>Please wait...</p>
+      </UnauthenticatedTemplate>
+    </>
   );
 }

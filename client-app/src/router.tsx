@@ -1,12 +1,15 @@
-import { createRouter } from '@tanstack/react-router'
-import { routeTree } from './routeTree.gen'
+import { createRouter } from '@tanstack/react-router';
+import { routeTree } from './routeTree.gen';
+
+export interface RouterContext {
+  isAuthenticated: boolean;
+}
 
 export const router = createRouter({
   routeTree,
   context: {
-    // auth will be passed down from App component
-    auth: undefined!,
-  },
+    isAuthenticated: false,
+  } as RouterContext,
 })
 
 declare module '@tanstack/react-router' {

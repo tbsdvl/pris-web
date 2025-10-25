@@ -8,9 +8,7 @@ export const Route = createFileRoute('/_authenticated/dashboard')({
 function DashboardComponent() {
   return (
     <AuthenticatedTemplate>
-      <div className="p-6">
-        <p>Hello world</p>
-      </div>
+      <p>Hello world</p>
     </AuthenticatedTemplate>
   );
 }
