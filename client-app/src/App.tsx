@@ -1,7 +1,7 @@
 import './App.css';
 
-import { RouterProvider } from "@tanstack/react-router"
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
+import { RouterProvider } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { router } from './router';
 import { AppProvider } from './auth';
 
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
