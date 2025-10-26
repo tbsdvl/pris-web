@@ -13,7 +13,7 @@ function resolveHttpsOptions() {
   const certPath = path.join(certDirectory, process.env.CERT_FILE ?? '');
 
   if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
-    console.warn('\n⚠️  HTTPS certificate not found. Run 'npm run generate-cert' first.\n');
+    console.warn('\n⚠️  HTTPS certificate not found. Run "npm run generate-cert" first.\n');
     return undefined;
   }
 
