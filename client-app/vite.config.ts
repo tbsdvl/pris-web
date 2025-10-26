@@ -20,13 +20,13 @@ function resolveHttpsOptions() {
   return {
     key: fs.readFileSync(keyPath),
     cert: fs.readFileSync(certPath)
-  } as const;
+  };
 }
 
 const baseServerConfig = {
   host: 'localhost',
   port: 5173
-} as const;
+};
 
 // https://vite.dev/config/
 export default defineConfig(() => {
