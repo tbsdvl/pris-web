@@ -7,8 +7,9 @@ import {
   RouterTestUtils, 
   renderWithProviders 
 } from './test-utils';
+import { ROUTES } from '../src/constants/routes.constants';
 
-describe('Dashboard', () => {
+describe('DashboardComponent', () => {
   let msalUtils: MsalTestUtils;
 
   beforeEach(() => {
@@ -23,8 +24,8 @@ describe('Dashboard', () => {
   test('Dashboard component renders correctly for authenticated users.', async () => {
     const router = await RouterTestUtils.createTestRouter(
       DashboardComponent, 
-      '/dashboard', 
-      '/dashboard'
+      ROUTES.DASHBOARD, 
+      ROUTES.DASHBOARD
     );
     
     await msalUtils.login();
