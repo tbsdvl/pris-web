@@ -38,7 +38,7 @@ export const useAuth = (): UseAuthReturn => {
     InteractionType.Redirect,
     {
       account: undefined,
-      scopes: ['User.Read'], // Add required scopes here
+      scopes: ['User.Read'],
     }
   );
 
