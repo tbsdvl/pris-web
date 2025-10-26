@@ -1,4 +1,4 @@
-import { MsalReactTester } from "msal-react-tester";
+import { MsalReactTester } from 'msal-react-tester';
 
 export class MsalTestUtils {
   public msalTester: MsalReactTester;

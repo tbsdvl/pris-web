@@ -15,12 +15,12 @@ export function LoginRedirectorComponent() {
 
   if (error) {
     return (
-      <div className="p-8 text-center">
-        <h2 className="text-xl text-red-600 mb-4">Authentication Error</h2>
-        <p className="mb-4">{error.message}</p>
+      <div className='p-8 text-center'>
+        <h2 className='text-xl text-red-600 mb-4'>Authentication Error</h2>
+        <p className='mb-4'>{error.message}</p>
         <button 
           onClick={() => login(InteractionType.Redirect)}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700'
         >
           Try Again
         </button>

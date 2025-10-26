@@ -1,6 +1,6 @@
-import { createMemoryHistory, createRoute, createRouter } from "@tanstack/react-router";
+import { createMemoryHistory, createRoute, createRouter } from '@tanstack/react-router';
 import { Route as rootRoute } from '../../src/routes/__root';
-import { act, createElement } from "react";
+import { act, createElement } from 'react';
 
 export class RouterTestUtils {
   static async createTestRouter(

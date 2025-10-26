@@ -1,8 +1,8 @@
-import { MsalProvider } from "@azure/msal-react";
-import { render, RenderOptions } from "@testing-library/react";
-import React from "react";
-import { RouterProvider } from "@tanstack/react-router";
-import { MsalTestUtils } from "./msal-test-utils";
+import { MsalProvider } from '@azure/msal-react';
+import { render, RenderOptions } from '@testing-library/react';
+import React from 'react';
+import { RouterProvider } from '@tanstack/react-router';
+import { MsalTestUtils } from './msal-test-utils';
 
 interface TestRenderOptions extends RenderOptions {
   msalUtils?: MsalTestUtils;

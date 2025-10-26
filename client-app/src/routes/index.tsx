@@ -10,8 +10,8 @@ export const Route = createFileRoute('/')({
 function RouteComponent() {
   return (
     <AuthGuard requireAuth={false}>
-      <div className="p-8">
-        <h1 className="text-2xl font-bold mb-4">Welcome</h1>
+      <div className='p-8'>
+        <h1 className='text-2xl font-bold mb-4'>Welcome</h1>
         <CustomLinkComponent to={ROUTES.LOGIN}>
           Login
         </CustomLinkComponent>

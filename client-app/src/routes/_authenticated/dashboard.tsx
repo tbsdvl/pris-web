@@ -27,7 +27,7 @@ export function DashboardComponent() {
     }
   }, [accounts]);
 
-  if (inProgress === "login") {
+  if (inProgress === 'login') {
     return <LoadingSpinnerComponent />;
   }
 

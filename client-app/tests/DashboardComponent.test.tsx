@@ -1,6 +1,6 @@
-import { screen } from "@testing-library/react";
-import React from "react";
-import { afterEach, beforeEach, describe, test, expect } from "vitest";
+import { screen } from '@testing-library/react';
+import React from 'react';
+import { afterEach, beforeEach, describe, test, expect } from 'vitest';
 import { DashboardComponent } from '../src/routes/_authenticated/dashboard';
 import { 
   MsalTestUtils, 
