@@ -9,11 +9,10 @@ export const msalConfig : Configuration = {
     postLogoutRedirectUri: import.meta.env.VITE_API_BASE_URL,
   },
   cache: {
-    cacheLocation: 'localStorage',
     storeAuthStateInCookie: false,
   }
 };
 
 export const loginRequest = {
-  scopes: ['User.Read'] // Add your required scopes here
+  scopes: ['User.Read']
 };

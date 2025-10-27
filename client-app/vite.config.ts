@@ -24,8 +24,8 @@ function resolveHttpsOptions() {
 }
 
 const baseServerConfig = {
-  host: 'localhost',
-  port: 5173
+  host: process.env.HOST,
+  port: process.env.PORT ? +process.env.PORT : 5173,
 };
 
 // https://vite.dev/config/

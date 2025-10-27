@@ -7,7 +7,6 @@ export function LoginRedirectorComponent() {
   const { login, isLoading, error } = useAuth();
 
   useEffect(() => {
-    // Auto-login when this component mounts
     if (!isLoading) {
       login(InteractionType.Redirect);
     }
