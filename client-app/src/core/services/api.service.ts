@@ -19,8 +19,8 @@ api.interceptors.response.use(
   responseInterceptor.onRejected
 );
 
-export const get = async (url: string): Promise<AxiosResponse<any, any> | undefined> => {
-  return await api.get(url);
+export const get = async (url: string, token: string): Promise<AxiosResponse<any, any> | undefined> => {
+  return await api.get(url, { headers: { Authorization: 'Bearer ' + token }});
 }
 
 export const post = async (url: string, config: AxiosRequestConfig) => {

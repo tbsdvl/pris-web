@@ -5,8 +5,8 @@ export const msalConfig : Configuration = {
   auth: {
     clientId: import.meta.env.VITE_AZURE_CLIENT_ID!,
     authority: 'https://login.microsoftonline.com/organizations',
-    redirectUri: import.meta.env.VITE_API_BASE_URL + ROUTES.AUTH_RESPONSE,
-    postLogoutRedirectUri: import.meta.env.VITE_API_BASE_URL,
+    redirectUri: import.meta.env.VITE_BASE_URL + ROUTES.AUTH_RESPONSE,
+    postLogoutRedirectUri: import.meta.env.VITE_BASE_URL,
   },
   cache: {
     storeAuthStateInCookie: false,
