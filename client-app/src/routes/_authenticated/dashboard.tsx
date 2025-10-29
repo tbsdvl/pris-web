@@ -6,16 +6,17 @@ import type { ProfileModel } from '../../user/models/profile.model';
 import { LoadingSpinnerComponent } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
 import { ButtonComponent } from '../../core/components/button/ButtonComponent';
 import { useAuth } from '../../auth/hooks/useAuth';
-import { get } from '../../core/services/api.service';
+import { useApi } from '../../core/hooks/useApi';
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
   component: DashboardComponent,
 });
 
 export function DashboardComponent() {
-  const { instance, accounts, inProgress } = useMsal();
+  const { accounts, inProgress } = useMsal();
   const { logout } = useAuth();
   const [profile, setProfile] = useState<ProfileModel>({ name: '' });
+  const getIsAdminResult = useApi('/isAdmin');
 
   const handleLogout = async () => {
     await logout();
@@ -25,15 +26,6 @@ export function DashboardComponent() {
     const account = accounts[0];
     if (account) {
       setProfile({ name: account.name } as ProfileModel);
-      instance.acquireTokenSilent({
-        account: account,
-        scopes: ['User.Read']
-      }).then((response) => {
-        get('isAdmin', response.accessToken)
-        .then((data) => {
-          console.log(data);
-        })
-      })
     }
   }, [accounts]);
 

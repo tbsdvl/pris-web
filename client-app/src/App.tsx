@@ -3,6 +3,7 @@ import { RouterProvider } from '@tanstack/react-router';
 import { router } from './router';
 import { useAuth } from './auth/hooks/useAuth';
 import { AppProvider } from './auth/components/AppProvider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function RouterContextProvider() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -14,10 +15,14 @@ function RouterContextProvider() {
   );
 }
 
+const client = new QueryClient();
+
 function App() {
   return (
     <AppProvider>
-      <RouterContextProvider />
+      <QueryClientProvider client={client}>
+        <RouterContextProvider />
+      </QueryClientProvider>
     </AppProvider>
   );
 }
