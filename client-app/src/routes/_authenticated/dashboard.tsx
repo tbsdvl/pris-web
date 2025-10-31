@@ -6,7 +6,7 @@ import type { ProfileModel } from '../../user/models/profile.model';
 import { LoadingSpinnerComponent } from '../../core/components/loading-spinner/LoadingSpinnerComponent';
 import { ButtonComponent } from '../../core/components/button/ButtonComponent';
 import { useAuth } from '../../auth/hooks/useAuth';
-import { useApi } from '../../core/hooks/useApi';
+import { useFetchData } from '../../core/hooks/useFetchData';
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
   component: DashboardComponent,
@@ -16,7 +16,8 @@ export function DashboardComponent() {
   const { accounts, inProgress } = useMsal();
   const { logout } = useAuth();
   const [profile, setProfile] = useState<ProfileModel>({ name: '' });
-  const getIsAdminResult = useApi('/isAdmin');
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const fetchIsAdminResult = useFetchData('/isAdmin');
 
   const handleLogout = async () => {
     await logout();
@@ -26,6 +27,9 @@ export function DashboardComponent() {
     const account = accounts[0];
     if (account) {
       setProfile({ name: account.name } as ProfileModel);
+      if (fetchIsAdminResult) {
+        
+      }
     }
   }, [accounts]);
 
