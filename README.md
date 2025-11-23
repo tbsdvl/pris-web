@@ -6,7 +6,7 @@
 
 
 
-PRIS is a pull request inspection system for Azure DevOps. Users can configure custom code review orchestrations for repositories using their own LLMs and contexts. This repository contains the code for the PRIS client application.
+PRIS is a pull request inspection system for Azure DevOps. Users can configure custom code review engines for repositories using their own LLMs and contexts. This repository contains the code for the PRIS client application.
 
 
 
