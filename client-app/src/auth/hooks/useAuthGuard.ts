@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from '@tanstack/react-router';
 import { useAuth } from './useAuth';
-import { ROUTES } from '../../constants/routes.constants';
+import { ROUTES } from '../../core/constants/routes.constants';
 
 export interface UseAuthGuardOptions {
   requireAuth?: boolean;
