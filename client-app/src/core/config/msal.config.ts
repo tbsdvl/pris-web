@@ -1,5 +1,5 @@
 import type { Configuration } from '@azure/msal-browser';
-import { ROUTES } from '../../constants/routes.constants';
+import { ROUTES } from '../constants/routes.constants';
 
 export const msalConfig : Configuration = {
   auth: {
@@ -14,5 +14,5 @@ export const msalConfig : Configuration = {
 };
 
 export const loginRequest = {
-  scopes: ['User.Read']
+  scopes: [import.meta.env.VITE_MS_GRAPH_SCOPES]
 };
