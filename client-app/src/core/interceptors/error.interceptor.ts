@@ -1,6 +1,7 @@
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import type { HttpErrorModel } from '../models/http-error.model';
 import type { ResponseErrorModel } from '../models/response-error.model';
+import { ERROR_MESSAGE } from '../constants/error-message.constants';
 
 export const requestInterceptor = {
   onFulfilled: (config: InternalAxiosRequestConfig) => {
@@ -17,7 +18,7 @@ export const responseInterceptor = {
   },
   onRejected: (error: AxiosError) => {
     const httpError: HttpErrorModel = {
-      message: 'An error occurred',
+      message: ERROR_MESSAGE.default,
       status: error.response?.status,
       code: error.code
     };
@@ -28,12 +29,12 @@ export const responseInterceptor = {
         httpError.message = data;
       } else {
         const responseError = data as ResponseErrorModel;
-        httpError.message = responseError?.message ?? responseError?.error ?? 'An error occurred';
+        httpError.message = responseError?.message ?? responseError?.error ?? ERROR_MESSAGE.default;
       }
     } else if (error.code === 'ECONNABORTED') {
-      httpError.message = 'Request timeout';
+      httpError.message = ERROR_MESSAGE.timeout;
     } else if (error.request) {
-      httpError.message = 'Network error - please check your connection';
+      httpError.message = ERROR_MESSAGE.connection;
     }
 
     console.error('HTTP Error:', httpError.message, error);
