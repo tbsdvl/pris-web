@@ -1,5 +1,5 @@
-import { useMsal } from "@azure/msal-react";
-import { useEffect, useState } from "react";
+import { useMsal } from '@azure/msal-react';
+import { useEffect, useState } from 'react';
 
 const apiScope = import.meta.env.VITE_API_SCOPE;
 

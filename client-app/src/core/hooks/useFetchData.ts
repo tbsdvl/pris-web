@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import { get } from "../services/api.service";
-import { useAcquireToken as useToken } from "./useToken";
+import { useQuery } from '@tanstack/react-query';
+import { get } from '../services/api.service';
+import { useAcquireToken as useToken } from './useToken';
 
 export function useFetchData(url: string) {
   const token = useToken();
