@@ -7,6 +7,8 @@ import { LoadingSpinnerComponent } from '../../core/components/loading-spinner/L
 import { ButtonComponent } from '../../core/components/button/ButtonComponent';
 import { useAuth } from '../../auth/hooks/useAuth';
 import { useFetchData } from '../../core/hooks/useFetchData';
+import { InteractionStatus } from '@azure/msal-browser';
+import { API_ROUTES } from '../../core/constants/api-routes.constants';
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
   component: DashboardComponent,
@@ -17,7 +19,7 @@ export function DashboardComponent() {
   const { logout } = useAuth();
   const [profile, setProfile] = useState<ProfileModel>({ name: '' });
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const fetchIsAdminResult = useFetchData('/isAdmin');
+  const fetchIsAdminResult = useFetchData(API_ROUTES.isAdmin);
 
   const handleLogout = async () => {
     await logout();
@@ -28,12 +30,12 @@ export function DashboardComponent() {
     if (account) {
       setProfile({ name: account.name } as ProfileModel);
       if (fetchIsAdminResult) {
-        
+        setIsAdmin(true);
       }
     }
-  }, [accounts]);
+  }, [accounts, isAdmin]);
 
-  if (inProgress === 'login') {
+  if (inProgress === InteractionStatus.Login) {
     return <LoadingSpinnerComponent />;
   }
 
@@ -41,7 +43,7 @@ export function DashboardComponent() {
     <>
       <HeaderComponent title={'Dashboard'} />
       <h2>Welcome, {profile.name}</h2>
-      <ButtonComponent id={'logout'} title={'Logout'} cb={handleLogout} />
+      <ButtonComponent id={'Logout'} title={'Logout'} cb={handleLogout} />
     </>
   );
 }
