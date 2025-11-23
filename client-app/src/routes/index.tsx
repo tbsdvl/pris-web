@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { ROUTES } from '../constants/routes.constants';
+import { ROUTES } from '../core/constants/routes.constants';
 import { AuthGuard } from '../auth/guards/AuthGuard';
 import { CustomLinkComponent } from '../core/components/custom-link/CustomLinkComponent';
 
